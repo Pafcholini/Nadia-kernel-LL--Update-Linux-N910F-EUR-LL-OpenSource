@@ -1,7 +1,7 @@
 /*
  *
  * Automatically generated file; DO NOT EDIT.
- * Linux/arm 3.10.42 Kernel Configuration
+ * Linux/arm 3.10.71 Kernel Configuration
  *
  */
 /*
@@ -628,47 +628,6 @@
  * switch which changes the user space mapping occurs.
  */
 /*
- *  arch/arm/include/asm/tlbflush.h
- *
- *  Copyright (C) 1999-2003 Russell King
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- */
-/*
- *  arch/arm/include/asm/glue.h
- *
- *  Copyright (C) 1997-1999 Russell King
- *  Copyright (C) 2000-2002 Deep Blue Solutions Ltd.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- *  This file provides the glue to stick the processor-specific bits
- *  into the kernel in an efficient manner.  The idea is to use branches
- *  when we're only targeting one class of TLB, or indirect calls
- *  when we're targeting multiple classes of TLBs.
- */
-/* Unified Inner Shareable TLB operations (ARMv7 MP extensions) */
-/*
- *	MMU TLB Model
- *	=============
- *
- *	We have the following to choose from:
- *	  v4    - ARMv4 without write buffer
- *	  v4wb  - ARMv4 with write buffer without I TLB flush entry instruction
- *	  v4wbi - ARMv4 with write buffer with I TLB flush entry instruction
- *	  fr    - Feroceon (v4wbi with non-outer-cacheable page table walks)
- *	  fa    - Faraday (v4 with write buffer with UTLB)
- *	  v6wbi - ARMv6 with write buffer with I TLB flush entry instruction
- *	  v7wbi - identical to v6wbi
- */
-/*
- * CR1 bits (CP#15 CR1)
- */
-/*
  * PMD_SHIFT determines the size of the area a second-level page table can map
  * PGDIR_SHIFT determines what a third-level page table entry can map
  */
@@ -860,16 +819,6 @@ SECTIONS
   _edata = .;
  }
  _edata_loc = __data_loc + SIZEOF(.data);
-  /* Creating a new section to store task credentials */
- . = ALIGN(1<<20);
- .tima.rkp.initcred : {
-  __rkp_ro_start = .;
- }
- .tima.rkp.ro : {
-  . = __rkp_ro_start + 0x400000;
-  __rkp_ro_end = .;
- }
- . = ALIGN(1<<12);
  . = ALIGN(0); __bss_start = .; . = ALIGN(0); .sbss : AT(ADDR(.sbss) - 0) { *(.sbss) *(.scommon) } . = ALIGN(0); .bss : AT(ADDR(.bss) - 0) { *(.bss..page_aligned) *(.dynbss) *(.bss) *(COMMON) } . = ALIGN(0); __bss_stop = .;
  _end = .;
  .stab 0 : { *(.stab) } .stabstr 0 : { *(.stabstr) } .stab.excl 0 : { *(.stab.excl) } .stab.exclstr 0 : { *(.stab.exclstr) } .stab.index 0 : { *(.stab.index) } .stab.indexstr 0 : { *(.stab.indexstr) } .comment 0 : { *(.comment) }
